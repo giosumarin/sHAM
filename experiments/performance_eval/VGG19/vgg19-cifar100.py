@@ -126,12 +126,12 @@ model.load_weights(filepath, by_name=True)
 sgd = optimizers.SGD(lr=.1, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
-tb_cb = TensorBoard(log_dir=log_filepath, histogram_freq=0)
-change_lr = LearningRateScheduler(scheduler)
-cbks = [change_lr,tb_cb]
+# tb_cb = TensorBoard(log_dir=log_filepath, histogram_freq=0)
+# change_lr = LearningRateScheduler(scheduler)
+# cbks = [change_lr,tb_cb]
 
-model.fit_generator(dataset, epochs=epochs,
-                    validation_data=(x_test, y_test))
+# model.fit_generator(dataset, epochs=epochs,
+#                     validation_data=(x_test, y_test))
 
 batch_size = 128
 maxepoches = 500
