@@ -3,7 +3,9 @@ import time
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.python.keras.layers.convolutional import Conv1D, Conv2D, Conv3D
+import tensorflow
+#from tensorflow.python.keras.layers.convolutional import Conv1D, Conv2D, Conv3D
+from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D
 from tensorflow.python.keras.layers.core import Dense
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.cluster import KMeans
@@ -86,9 +88,8 @@ class uCWS(compressed_nn.Compressed_NN):
         to_be_returned = []
         print("sono qui")
         for layer in self.model.layers:
-            print(layer)
+            print(isinstance(layer,instan))
             if (isinstance(layer,instan) and perc > 0):
-                print("into list gen", layer.get_weights()[0])
                 to_be_returned.append(layer.get_weights()[0])
         return to_be_returned
 
