@@ -61,14 +61,16 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
         compression_model = pruning_uUQ.pruning_uUQ(model=model, perc_prun_for_dense=prfc, perc_prun_for_cnn=prcnn, clusters_for_conv_layers=clustercnn, clusters_for_dense_layers=clusterfc)
     elif compression == 'pruECSQ':
         compression_model = pruning_uECSQ.pruning_uECSQ(model=model, perc_prun_for_dense=prfc, perc_prun_for_cnn=prcnn, clusters_for_conv_layers=3*clustercnn, clusters_for_dense_layers=3*clusterfc, wanted_clusters_cnn=clustercnn, wanted_clusters_fc=clusterfc, tr=tr, lamb=lambd)
-
+    step_per_epoch = None
     # Load dataset
     if dataset == "MNIST":
         dataset, x_train, y_train, x_test, y_test = MNIST(minibatch)
     elif dataset == "CIFAR10":
         dataset, x_train, y_train, x_test, y_test = CIFAR10(minibatch)
     elif dataset == "CIFAR100":
-        dataset, x_train, y_train, x_test, y_test = CIFAR10(minibatch)
+        dataset, x_train, y_train, x_test, y_test = CIFAR100(minibatch)
+        step_per_epoch = x_train.shape[0] // minibatch
+        print("step_per_epoch: ",step_per_epoch)
 
     # Pre-compression prediction assessment
     pre_compr_train = compression_model.model.evaluate(x_train, y_train)[1]
@@ -113,7 +115,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
     if compression == "pr":
         compression_model.train_pr(epochs=100, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, step_per_epoch = 10000000, patience=0)
     else:
-        compression_model.train_ws(epochs=30, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=0.001)
+        compression_model.train_ws(epochs=30, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=0.001, step_per_epoch=step_per_epoch)
 
     # Model save
     name_net = (net.split("/")[-1])[:-3]
