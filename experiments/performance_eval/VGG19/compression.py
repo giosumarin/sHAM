@@ -4,7 +4,7 @@ import pickle
 import tensorflow as tf
 import click
 
-from datasets import MNIST, CIFAR10
+from datasets import MNIST, CIFAR10, CIFAR100
 from sHAM import pruning, uCWS, uPWS
 from sHAM import uUQ, uECSQ, pruning_uCWS, pruning_uPWS
 from sHAM import pruning_uUQ, pruning_uECSQ
@@ -66,6 +66,8 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
     if dataset == "MNIST":
         dataset, x_train, y_train, x_test, y_test = MNIST(minibatch)
     elif dataset == "CIFAR10":
+        dataset, x_train, y_train, x_test, y_test = CIFAR10(minibatch)
+    elif dataset == "CIFAR100":
         dataset, x_train, y_train, x_test, y_test = CIFAR10(minibatch)
 
     # Pre-compression prediction assessment
