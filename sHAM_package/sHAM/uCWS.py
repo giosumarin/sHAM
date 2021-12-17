@@ -74,6 +74,7 @@ class uCWS(compressed_nn.Compressed_NN):
             self.recompose_weight(Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc)
         # Convolutional layers
         if self.clusters_cnn > 0:
+            print("nel ramo giusto")
             massive_weight_list = self.extract_weights((Conv1D, Conv2D, Conv3D), self.clusters_cnn)
             all_vect_weights = np.concatenate([x.reshape(-1,1) for x in massive_weight_list], axis=None).reshape(-1,1) # ultimo reshape x trasposiz da vett riga a vett colonna
             self.centers_cnn = build_clusters(weights=all_vect_weights, cluster=self.clusters_cnn, mbkmeans=mbkmeans)
@@ -83,6 +84,7 @@ class uCWS(compressed_nn.Compressed_NN):
 
     def extract_weights(self, instan, perc):
         to_be_returned = []
+        print("sono qui")
         for layer in self.model.layers:
             print(layer)
             if (isinstance(layer,instan) and perc > 0):
