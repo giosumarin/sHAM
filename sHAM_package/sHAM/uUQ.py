@@ -3,8 +3,7 @@ import time
 
 import numpy as np
 from numpy import errstate, inf
-from tensorflow.python.keras.layers.convolutional import Conv1D, Conv2D, Conv3D
-from tensorflow.python.keras.layers.core import Dense
+from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D, Dense
 
 from sHAM import uCWS
 
