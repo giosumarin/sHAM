@@ -84,6 +84,7 @@ class uCWS(compressed_nn.Compressed_NN):
     def extract_weights(self, instan, perc):
         to_be_returned = []
         for layer in self.model.layers:
+            print(layer)
             if (isinstance(layer,instan) and perc > 0):
                 print("into list gen", layer.get_weights()[0])
                 to_be_returned.append(layer.get_weights()[0])
