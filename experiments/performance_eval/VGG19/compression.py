@@ -16,8 +16,8 @@ from numpy.random import seed
 seed(SEED)
 tf.random.set_seed(SEED)
 
-from tensorflow.python import _pywrap_util_port
-print("MKL enabled:", _pywrap_util_port.IsMklEnabled())
+#from tensorflow.python import _pywrap_util_port
+#print("MKL enabled:", _pywrap_util_port.IsMklEnabled())
 
 @click.command()
 @click.option('--compression', help='Type of compression')
