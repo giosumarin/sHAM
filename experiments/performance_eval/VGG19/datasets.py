@@ -58,9 +58,26 @@ def CIFAR100(batch_size):
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
 
-    dataset = tf.data.Dataset.from_tensor_slices(
-  (tf.cast(x_train, tf.float32),
-   tf.cast(y_train,tf.int64)))
-    dataset = dataset.shuffle(1000).batch(batch_size)
+    #dataset = tf.data.Dataset.from_tensor_slices(
+  #(tf.cast(x_train, tf.float32),
+   #tf.cast(y_train,tf.int64)))
+    #dataset = dataset.shuffle(1000).batch(batch_size)
+
+    gen = tf.keras.preprocessing.image.ImageDataGenerator(
+            featurewise_center=False,  # set input mean to 0 over the dataset
+            samplewise_center=False,  # set each sample mean to 0
+            featurewise_std_normalization=False,  # divide inputs by std of the dataset
+            samplewise_std_normalization=False,  # divide each input by its std
+            zca_whitening=False,  # apply ZCA whitening
+            rotation_range=15,  # randomly rotate images in the range (degrees, 0 to 180)
+            width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+            height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+            horizontal_flip=True,  # randomly flip images
+            vertical_flip=False)  # randomly flip images
+        # (std, mean, and principal components if ZCA whitening is applied).
+    gen.fit(x_train)
+
+    dataset = tf.data.Dataset.from_generator(lambda: gen.flow(x_train, y_train, batch_size=batch_size),
+                 output_shapes=([None, 32,32,3], [None,100]), output_types=(tf.float32, tf.float32))
 
     return dataset, x_train, y_train, x_test, y_test
