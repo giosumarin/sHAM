@@ -89,7 +89,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
         compression_model.apply_uUQ()
     elif compression == 'uECSQ':
         # lambdas = [1e-10, 5e-9, 1e-9, 1e-8, 1e-7, 5e-7, 1e-6, 5e-6, 7.5e-6, 1e-5, 2e-5][::-1]
-        lambdas = [1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10][::-1]
+        lambdas = [1e-13, 2.5e-13, 5e-13, 7.5e-13,1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10][::-1]
         compression_model.tune_lambda(lambdas)
         compression_model.apply_uECSQ()
     elif compression == 'pruCWS':
@@ -115,7 +115,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
     if compression == "pr":
         compression_model.train_pr(epochs=100, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, step_per_epoch = 10000000, patience=0)
     else:
-        compression_model.train_ws(epochs=30, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=0.001, step_per_epoch=step_per_epoch)
+        compression_model.train_ws(epochs=50, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=0.001, step_per_epoch=step_per_epoch)
 
     # Model save
     name_net = (net.split("/")[-1])[:-3]
