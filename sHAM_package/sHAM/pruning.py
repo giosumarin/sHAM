@@ -4,8 +4,7 @@ import numpy as np
 from sHAM import compressed_nn
 
 import tensorflow as tf
-from tensorflow.python.keras.layers.convolutional import Conv1D, Conv2D, Conv3D
-from tensorflow.python.keras.layers.core import Dense
+from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D, Dense
 
 ### Tipi di layer:
 # tf.python.keras.layers.convolutional.Conv2D
