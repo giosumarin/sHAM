@@ -30,7 +30,7 @@ tf.random.set_seed(SEED)
 @click.option('--prcnn', default=0, help='percentage of pruned connection (convolutional layers)')
 @click.option('--clusterfc', default=0, help='different values for all dense layers')
 @click.option('--clustercnn', default=0, help='different values for all dense layers')
-@click.option('--tr', default=0.001, help='treshold for ECSQ')
+@click.option('--tr', default=0)#0.001, help='treshold for ECSQ')
 @click.option('--lambd', default=0., help='coefficient for entrophy with ECSQ')
 @click.option('--logger', default=False, help='set True for logging train into txt')
 @click.option('--ptnc', default=0, help='patience (defualt 0)')
@@ -115,7 +115,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
     if compression == "pr":
         compression_model.train_pr(epochs=100, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, step_per_epoch = 10000000, patience=0)
     else:
-        compression_model.train_ws(epochs=20, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=0.001, step_per_epoch=step_per_epoch)
+        compression_model.train_ws(epochs=20, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=tr, step_per_epoch=step_per_epoch)
 
     # Model save
     name_net = (net.split("/")[-1])[:-3]
