@@ -111,7 +111,7 @@ class uCWS(compressed_nn.Compressed_NN):
         return res if isinstance(res, float) else res[-1]
 
     def train_ws(self, epochs, lr, dataset, X_train, y_train, X_test, y_test, step_per_epoch=None, patience=-1, best_model=True, min_is_better=True, threshold=0.0001):
-        comp_lmbd = (lambda a,b: a<=b) if min_is_better else (lambda a,b: a>=b)
+        comp_lmbd = (lambda a,b: a<b) if min_is_better else (lambda a,b: a>b)
         with tf.device('gpu:0'):
             self.patience = patience
             self.acc_train = []

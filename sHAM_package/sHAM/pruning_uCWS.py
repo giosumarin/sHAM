@@ -41,7 +41,7 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
         self.recompose_weight(instan, perc, centers, idx_layers)
 
     def train_ws(self, epochs, lr, dataset, X_train, y_train, X_test, y_test, step_per_epoch=None, patience=-1, best_model=True, min_is_better=True, threshold=0.0001):
-        comp_lmbd = (lambda a,b: a<=b) if min_is_better else (lambda a,b: a>=b)
+        comp_lmbd = (lambda a,b: a<b) if min_is_better else (lambda a,b: a>b)
         with tf.device('gpu:0'):
             self.patience = patience
             self.acc_train = []
