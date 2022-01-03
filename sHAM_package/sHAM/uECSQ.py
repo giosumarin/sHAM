@@ -33,7 +33,7 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
     counter = 0
     while True:
         counter+=1
-        if counter <= 10000:
+        if counter >= 1000:
             print("breaked")
             break
         J = 0
