@@ -30,7 +30,12 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
         vect_idx[shift:shift+len(w_split[i])] = i
         shift += len(w_split[i])
 
+    counter = 0
     while True:
+        counter+=1
+        if counter <= 10000:
+            print("breaked")
+            break
         J = 0
         for i, elem in enumerate(vect_weights):
             with errstate(divide='ignore'):
@@ -113,13 +118,13 @@ class uECSQ(uCWS.uCWS):
         final_lambd = 0.
         abs_distance = 10000
         for i, lam in enumerate(lambdaList):
-            #print(lam, end=' ')
+            print(lam, end=' ')
             massive_weight_list = self.extract_weights(instan, perc)
             c, _ = ECSQ(massive_weight_list, k=3*wanted_clusters, wanted_clusters=wanted_clusters, lambd=lam)
             # print(len(c))
             if len(c) >= wanted_clusters:
                 final_lambd = lambdaList[i] if (abs(len(c) - wanted_clusters) <= abs_distance) else lambdaList[i-1]
-                #print("best", final_lambd)
+                print("best", final_lambd)
                 break
             abs_distance = abs(len(c) - wanted_clusters)
         if final_lambd == 0:
