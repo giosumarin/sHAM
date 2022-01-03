@@ -89,7 +89,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
         compression_model.apply_uUQ()
     elif compression == 'uECSQ':
         # lambdas = [1e-10, 5e-9, 1e-9, 1e-8, 1e-7, 5e-7, 1e-6, 5e-6, 7.5e-6, 1e-5, 2e-5][::-1]
-        lambdas = [1e-13, 2.5e-13, 5e-13, 7.5e-13,1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10][::-1]
+        lambdas = [1e-13, 2.5e-13, 5e-13, 7.5e-13,1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10, 2.5e-9, 5e-9, 7.5e-9, 1e-9][::-1]
         compression_model.tune_lambda(lambdas)
         compression_model.apply_uECSQ()
     elif compression == 'pruCWS':
@@ -100,7 +100,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
         compression_model.apply_pr_uUQ()
     elif compression == 'pruECSQ':
         # lambdas = [1e-10, 5e-9, 1e-9, 1e-8, 1e-7, 5e-7, 1e-6, 5e-6, 7.5e-6, 1e-5, 2e-5][::-1]
-        lambdas = [1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10][::-1]
+        lambdas = [1e-13, 2.5e-13, 5e-13, 7.5e-13,1e-12, 2.5e-12, 5e-12, 7.5e-12, 1e-11, 2.5e-11, 5e-11, 7.5e-11, 1e-10, 2.5e-9, 5e-9, 7.5e-9, 1e-9][::-1]
         compression_model.tune_lambda(lambdas)
         compression_model.apply_pr_uECSQ()
 
