@@ -95,13 +95,16 @@ class uECSQ(uCWS.uCWS):
         # Convolutional layers
         if self.clusters_cnn > 0:
             self.idx_layers_cnn, self.centers_cnn, self.clusters_cnn = self.apply_private_uecsq((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.wanted_clusters_cnn, self.lamb_cnn)
-
+        print("applied")
 
     def apply_private_uecsq(self, instan, perc, wanted_clusters, lamb):
         massive_weight_list = self.extract_weights(instan, perc)
+        print("extracted")
         centers, idx_layers = ECSQ(massive_weight_list, k=perc, wanted_clusters=wanted_clusters, lambd=lamb, tr=self.tr)
+        print("applied")
         perc = len(centers)
         self.recompose_weight(instan, perc, centers, idx_layers)
+        print("recomposed")
 
         return idx_layers, centers, perc
 
