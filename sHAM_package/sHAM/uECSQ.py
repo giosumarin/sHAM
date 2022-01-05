@@ -113,6 +113,7 @@ class uECSQ(uCWS.uCWS):
         if self.clusters_cnn > 0:
             print("Tuning CNN lambda")
             self.lamb_cnn = self.tune_lambda_private_uecsq(lambdaList, (Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.wanted_clusters_cnn)
+        print("finito tune")
 
     def tune_lambda_private_uecsq(self, lambdaList, instan, perc, wanted_clusters):
         final_lambd = 0.
@@ -123,7 +124,11 @@ class uECSQ(uCWS.uCWS):
             c, _ = ECSQ(massive_weight_list, k=3*wanted_clusters, wanted_clusters=wanted_clusters, lambd=lam)
             # print(len(c))
             if len(c) >= wanted_clusters:
-                final_lambd = lambdaList[i] if (abs(len(c) - wanted_clusters) <= abs_distance) else lambdaList[i-1]
+                if i == 0:
+                    final_lambd = lambdaList[i]
+                    print("dentro if")
+                else:
+                    final_lambd = lambdaList[i] if (abs(len(c) - wanted_clusters) <= abs_distance) else lambdaList[i-1]
                 print("best", final_lambd)
                 break
             abs_distance = abs(len(c) - wanted_clusters)
