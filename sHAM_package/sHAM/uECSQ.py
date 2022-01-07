@@ -124,7 +124,7 @@ class uECSQ(uCWS.uCWS):
         for i, lam in enumerate(lambdaList):
             print(lam, end=' ')
             massive_weight_list = self.extract_weights(instan, perc)
-            c, _ = ECSQ(massive_weight_list, k=3*wanted_clusters, wanted_clusters=wanted_clusters, lambd=lam)
+            c, _ = ECSQ(massive_weight_list, k=3*wanted_clusters, wanted_clusters=wanted_clusters, lambd=lam, tr=self.tr)
             # print(len(c))
             if len(c) >= wanted_clusters:
                 if i == 0:
