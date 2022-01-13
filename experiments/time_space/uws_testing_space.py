@@ -367,14 +367,19 @@ for weights in sorted(onlyfiles):
             model.set_weights(lw)
 
             cnnIdx, denseIdx = list_of_cnn_and_dense_weights_indexes(lw)
-            space_expanded_cnn = sum([cnn_space(lw[i]) for i in cnnIdx])
-            
+            if type_compr != "also_cnn":
+                space_expanded_cnn = sum([cnn_space(lw[i]) for i in cnnIdx])
+            else:
+                space_expanded_cnn = 0
             # Estraggo quanti simboli sono usati effettivamente nei liv conv
-            vect_weights =[np.hstack(lw[i]).reshape(-1,1) for i in cnnIdx]
-            all_vect_weights = np.concatenate(vect_weights, axis=None).reshape(-1,1)
-            uniques = np.unique(all_vect_weights)
-            num_values = len(uniques)
-            space_compr_cnn = (num_values*32 + math.ceil(np.log2(num_values)) * sum([lw[i].size for i in cnnIdx])) / 8
+            if type_compr == "also_cnn":
+                vect_weights =[np.hstack(lw[i]).reshape(-1,1) for i in cnnIdx]
+                all_vect_weights = np.concatenate(vect_weights, axis=None).reshape(-1,1)
+                uniques = np.unique(all_vect_weights)
+                num_values = len(uniques)
+                space_compr_cnn = (num_values*32 + math.ceil(np.log2(num_values)) * sum([lw[i].size for i in cnnIdx])) / 8
+            else:
+                space_compr_cnn = space_expanded_cnn
 
             pr, ws, acc = split_filename(weights)
             ws_acc = float(acc[:-3])
@@ -398,9 +403,9 @@ for weights in sorted(onlyfiles):
             pruning_l_h.append(pr)
             ws_l_h.append(ws)
             diff_acc_h.append(round(ws_acc-original_acc, 5))
-            if type_compr in ["ham", "all"]:
+            if type_compr in ["ham", "all", "also_cnn"]:
                 space_h.append(round((space_compr_cnn + space_huffman)/(space_expanded_cnn + space_dense), 5)) # Tengo conto anche di cnn
-            if type_compr in ["sham", "all"]:
+            if type_compr in ["sham", "all", "also_cnn"]:
                 space_sh.append(round((space_compr_cnn + space_shuffman)/(space_expanded_cnn + space_dense), 5))
             nonzero_h.append(non_zero)
             
