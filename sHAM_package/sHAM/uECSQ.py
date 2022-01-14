@@ -13,43 +13,60 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
     J_last = inf
     stacked = [np.vstack(w) for w in weights_to_quantize]
     vect_weights = np.concatenate(stacked, axis=None)
+    print("stacked")
     dim = len(vect_weights)
     w_split = np.array_split(np.sort(vect_weights), k)
 
     c = np.array([np.mean(w) for w in w_split]).reshape(-1,1)
     p = np.array([w.size/dim for w in w_split]).reshape(-1,1)
 
+    print("c & p")
+
     dim_weights = [w.shape for w in weights_to_quantize]
 
     idx_layers = [np.zeros_like(w, dtype='int16') for w in weights_to_quantize]
     stacked_idx = [np.vstack(idx) for idx in idx_layers]
     vect_idx = np.concatenate(stacked_idx, axis=None)
+    print(vect_idx.shape)
+    print(vect_weights.shape)
 
+    
+    
     shift = 0
     for i in range(len(w_split)):
         vect_idx[shift:shift+len(w_split[i])] = i
         shift += len(w_split[i])
 
+    print("shifted")
+
+    also_run = True
     counter = 0
-    while True:
+    while also_run:
         counter+=1
+        print(counter)
         if counter >= 100:
             print("breaked")
-            break
-        J = 0
-        for i, elem in enumerate(vect_weights):
-            with errstate(divide='ignore'):
-                j_t = np.square(np.abs(elem-c)) - lambd*np.log(p)
-            l = np.argmin(j_t)
-            vect_idx[i] = l
+            also_run = False
+        
+        j_t = np.abs(np.subtract(vect_weights,c))-lambd*np.log(p)
+        vect_idx = np.argmin(j_t, axis = 1)
+        J = np.sum(np.min(j_t, axis=1)/dim)
+        # J = 0
+        # for i, elem in enumerate(vect_weights):
+        #     #with errstate(divide='ignore'):
+        #     j_t = np.square(np.abs(elem-c)) - lambd*np.log(p)
+        #     l = np.argmin(j_t)
+        #     vect_idx[i] = l
+        #     J += j_t[l]/dim
+        print("fored")
 
-            J += j_t[l]/dim
+            
         for i in range(len(c)):
             c[i] = np.mean(vect_weights[vect_idx == i]) if len(vect_idx[vect_idx == i]) != 0 else -inf
             p[i] = len(vect_idx[vect_idx == i])/dim
 
         if J_last - J <= tr or wanted_clusters >= len(c[c!=-inf]):
-            break
+            also_run = False
         J_last = J
 
     new_vect_idx = np.copy(vect_idx)
@@ -92,10 +109,11 @@ class uECSQ(uCWS.uCWS):
         # Dense layers
         if self.clusters_fc > 0:
             self.idx_layers_fc, self.centers_fc, self.clusters_fc = self.apply_private_uecsq(Dense, self.clusters_fc, self.wanted_clusters_fc, self.lamb_fc)
+            print("lunghezza lista idx ",len(self.idx_layers_fc))
         # Convolutional layers
         if self.clusters_cnn > 0:
             self.idx_layers_cnn, self.centers_cnn, self.clusters_cnn = self.apply_private_uecsq((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.wanted_clusters_cnn, self.lamb_cnn)
-        print("applied")
+        print("applied_last")
 
     def apply_private_uecsq(self, instan, perc, wanted_clusters, lamb):
         massive_weight_list = self.extract_weights(instan, perc)
@@ -124,6 +142,7 @@ class uECSQ(uCWS.uCWS):
         for i, lam in enumerate(lambdaList):
             print(lam, end=' ')
             massive_weight_list = self.extract_weights(instan, perc)
+            len(massive_weight_list)
             c, _ = ECSQ(massive_weight_list, k=3*wanted_clusters, wanted_clusters=wanted_clusters, lambd=lam, tr=self.tr)
             # print(len(c))
             if len(c) >= wanted_clusters:
