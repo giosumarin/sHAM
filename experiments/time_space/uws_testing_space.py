@@ -192,7 +192,7 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
         # d_data, d_rev_data  = sparse_huffman_only_data.huffman_sparse_encoded_dict(data)
         # data_encoded = sparse_huffman_only_data.encoded_matrix(data, d_data, d_rev_data)
         # int_from_strings = huffman.convert_bin_to_int(huffman.make_words_list_to_int(data_encoded, bit_words_machine))
-        
+        print(len(cum), len(row_index))
         space_dense += dense_space(lw[l])  
         print(space_dense)
         space_sparse_huffman += bit_words_machine/8 * len(int_data) 
