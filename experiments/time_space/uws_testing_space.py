@@ -196,7 +196,7 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
         print(space_dense)
         space_sparse_huffman += bit_words_machine/8 * len(int_from_strings) 
         print(space_sparse_huffman)
-        space_sparse_huffman += space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
+        space_sparse_huffman += 4*(len(cum)+len(row_index))#space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
         print(space_sparse_huffman)
     return space_dense, space_sparse_huffman    
 
