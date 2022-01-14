@@ -384,7 +384,7 @@ for weights in sorted(onlyfiles):
             model.set_weights(lw)
 
             cnnIdx, denseIdx = list_of_cnn_and_dense_weights_indexes(lw)
-            if type_compr != "also_cnn":
+            if type_compr == "also_cnn":
                 space_expanded_cnn = sum([cnn_space(lw[i]) for i in cnnIdx])
             else:
                 space_expanded_cnn = 0
