@@ -166,8 +166,6 @@ def space_for_row_cum(matr, list_):
     return 8 * len(list_)
 
 def make_huffman_sparse_par(model, lodi, lodwi, lw):
-    core = 24
-    times = 5
     bit_words_machine = 64
 
     vect_weights = [np.hstack(lw[i]).reshape(-1,1) for i in lodwi]
@@ -195,9 +193,11 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
         int_from_strings = huffman.convert_bin_to_int(huffman.make_words_list_to_int(data_encoded, bit_words_machine))
         
         space_dense += dense_space(lw[l])  
+        print(space_dense)
         space_sparse_huffman += bit_words_machine/8 * len(int_from_strings) 
+        print(space_sparse_huffman)
         space_sparse_huffman += space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
-                
+        print(space_sparse_huffman)
     return space_dense, space_sparse_huffman    
 
 
