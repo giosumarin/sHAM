@@ -49,7 +49,7 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
             also_run = False
         
         j_t = np.abs(np.subtract(vect_weights,c))-lambd*np.log(p)
-        vect_idx = np.argmin(j_t, axis = 1)
+        vect_idx = np.argmin(j_t, axis = 1).reshape(vect_idx.shape)
         J = np.sum(np.min(j_t, axis=1)/dim)
         # J = 0
         # for i, elem in enumerate(vect_weights):
