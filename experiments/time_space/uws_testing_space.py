@@ -199,6 +199,8 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
         print(space_sparse_huffman)
         space_sparse_huffman += space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
         print(space_sparse_huffman)
+        print("prova: ", (len(np.unique(lw[l]))+len(lw[l].shape[1])))
+        print(len(cum)+len(row_index))
     return space_dense, space_sparse_huffman    
 
 
@@ -406,6 +408,12 @@ for weights in sorted(onlyfiles):
 
             lodi = list_of_dense_indexes(model)
             lodwi = list_of_dense_weights_indexes(lw)
+            for l in lodwi:
+                print(lw[l])
+                print(np.unique(lw[l]))
+                print(len(np.nonzero(lw[l])))
+                print(lw[l].size)
+                print()
             assert len(lodi) == len(lodwi)
 
             non_zero = []
