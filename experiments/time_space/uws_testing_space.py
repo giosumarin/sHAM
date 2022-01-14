@@ -89,6 +89,8 @@ def dense_space(npmatr2d):
         byte = 64/8
     elif npmatr2d.dtype == np.float32:
         byte = 32/8
+    else:
+        return npmatr2d.shape[0]*npmatr2d.shape[1]*32/8
     return npmatr2d.shape[0]*npmatr2d.shape[1]*byte
 
 def cnn_space(npmatr2d):
@@ -184,19 +186,18 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
     space_sparse_huffman = 0
     space_sparse_huffman += dict_space(d_rev)
     for l in lodwi:
-        data, row_index, cum = sparse_huffman.convert_dense_to_csc(lw[l])
-        #encoded = huffman.matrix_with_code(lw[l], d, d_rev)
-        ########list_bin = huffman.make_words_list_to_int(encoded, bit_words_machine)
-        d_data, d_rev_data  = sparse_huffman_only_data.huffman_sparse_encoded_dict(data)
-        data_encoded = sparse_huffman_only_data.encoded_matrix(data, d_data, d_rev_data)
-        ########
-        int_from_strings = huffman.convert_bin_to_int(huffman.make_words_list_to_int(data_encoded, bit_words_machine))
+        matr_shape, int_data, d_rev_data, row_index, cum, expected_c, min_length_encoded = sparse_huffman_only_data.do_all_for_me(lw[l], bit_words_machine)
+        # data, row_index, cum = sparse_huffman.convert_dense_to_csc(lw[l])
+        # print(len(cum), len(row_index))
+        # d_data, d_rev_data  = sparse_huffman_only_data.huffman_sparse_encoded_dict(data)
+        # data_encoded = sparse_huffman_only_data.encoded_matrix(data, d_data, d_rev_data)
+        # int_from_strings = huffman.convert_bin_to_int(huffman.make_words_list_to_int(data_encoded, bit_words_machine))
         
         space_dense += dense_space(lw[l])  
         print(space_dense)
-        space_sparse_huffman += bit_words_machine/8 * len(int_from_strings) 
+        space_sparse_huffman += bit_words_machine/8 * len(int_data) 
         print(space_sparse_huffman)
-        space_sparse_huffman += 4*(len(cum)+len(row_index))#space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
+        space_sparse_huffman += space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
         print(space_sparse_huffman)
     return space_dense, space_sparse_huffman    
 
