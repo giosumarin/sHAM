@@ -44,13 +44,13 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
     while also_run:
         counter+=1
         print(counter)
-        if counter >= 100:
+        if counter >= 20:
             print("breaked")
             also_run = False
-        
-        j_t = np.abs(np.subtract(vect_weights,c))-lambd*np.log(p)
-        vect_idx = np.argmin(j_t, axis = 0)#.reshape(vect_idx.shape)
-        J = np.sum(np.min(j_t, axis=0)/dim)
+        with errstate(divide='ignore'):
+            j_t = np.abs(np.subtract(vect_weights,c))-lambd*np.log(p)
+            vect_idx = np.argmin(j_t, axis = 0)#.reshape(vect_idx.shape)
+            J = np.sum(np.min(j_t, axis=0)/dim)
         # J = 0
         # for i, elem in enumerate(vect_weights):
         #     #with errstate(divide='ignore'):
@@ -58,7 +58,7 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
         #     l = np.argmin(j_t)
         #     vect_idx[i] = l
         #     J += j_t[l]/dim
-        print("fored")
+        #print("fored")
 
             
         for i in range(len(c)):
@@ -68,7 +68,7 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
         if J_last - J <= tr or wanted_clusters >= len(c[c!=-inf]):
             also_run = False
         J_last = J
-
+    print(counter, len(c[c!=-inf]))
     new_vect_idx = np.copy(vect_idx)
     for i_c in range(len(c)):
         if c[i_c] == -inf:
