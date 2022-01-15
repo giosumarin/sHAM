@@ -2,6 +2,8 @@ import time
 
 from sHAM import pruning_uCWS
 from sHAM import uUQ
+from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D, Dense
+
 
 class pruning_uUQ(pruning_uCWS.pruning_uCWS, uUQ.uUQ):
     def __init__(self, model, perc_prun_for_dense, perc_prun_for_cnn, clusters_for_dense_layers, clusters_for_conv_layers, delta=0, b=0.):
@@ -18,3 +20,7 @@ class pruning_uUQ(pruning_uCWS.pruning_uCWS, uUQ.uUQ):
     def apply_pr_uUQ(self):
         self.apply_pruning() #crea masks e setta pesi prunati nel modello
         self.apply_uUQ() #crea centri e matrici degli indici e setta pesi ws nel modello
+        if self.perc_prun_for_dense > 0:
+            self.recompose_weight_first(Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc)
+        if self.perc_prun_for_cnn > 0:
+            self.recompose_weight_first((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn)

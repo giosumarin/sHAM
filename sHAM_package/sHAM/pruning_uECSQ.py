@@ -2,6 +2,8 @@ import time
 
 from sHAM import pruning_uCWS
 from sHAM import uECSQ
+from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D, Dense
+
 
 class pruning_uECSQ(pruning_uCWS.pruning_uCWS, uECSQ.uECSQ):
     def __init__(self, model, perc_prun_for_dense, perc_prun_for_cnn, clusters_for_dense_layers, clusters_for_conv_layers, wanted_clusters_cnn, wanted_clusters_fc, tr=0.001, lamb=0.5):
@@ -21,4 +23,8 @@ class pruning_uECSQ(pruning_uCWS.pruning_uCWS, uECSQ.uECSQ):
     def apply_pr_uECSQ(self):
         self.apply_pruning()
         self.apply_uECSQ()
+        if self.perc_prun_for_dense > 0:
+            self.recompose_weight_first(Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc)
+        if self.perc_prun_for_cnn > 0:
+            self.recompose_weight_first((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn)
 

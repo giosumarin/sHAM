@@ -5,6 +5,8 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Conv1D, Conv2D, Conv3D, Dense
 from scipy import ndimage
+from sHAM.uCWS import idx_matrix_to_matrix
+
 
 from sHAM import pruning
 from sHAM import uCWS
@@ -30,7 +32,11 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
     def apply_pr_uCWS(self, mbkmeans=True):
         self.apply_pruning() #crea masks e setta pesi prunati nel modello
         self.apply_uCWS(mbkmeans) #crea centri e matrici degli indici e setta pesi ws nel modello
-
+        if self.perc_prun_for_dense > 0:
+            self.recompose_weight_first(Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc)
+        if self.perc_prun_for_cnn > 0:
+            self.recompose_weight_first((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn)
+    
     def update_centers_and_recompose(self, list_weights_before, lr, instan, perc, centers, idx_layers, masks):
         list_weights = self.extract_weights(instan, perc)
         centers_upd = [(centroid_gradient_matrix_combined(idx_layers[i], list_weights[i]-list_weights_before[i], perc, masks[i])) for i in range(len(list_weights))]
@@ -39,6 +45,18 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
             centers = centers + lr * c_u
 
         self.recompose_weight(instan, perc, centers, idx_layers)
+
+    def recompose_weight_first(self, instan, perc, centers, idx_layers):
+        index_i = 0
+        self.temp_masks = self.masks.copy()
+        for layer in self.model.layers:
+            if (isinstance(layer,instan) and perc > 0):
+                if len(layer.get_weights()) > 1:
+                    layer.set_weights([idx_matrix_to_matrix(idx_layers[index_i], centers)*self.temp_masks.pop(0), layer.get_weights()[1]])
+                else:
+                    layer.set_weights([idx_matrix_to_matrix(idx_layers[index_i], centers)*self.temp_masks.pop(0)])
+                index_i += 1
+
 
     def train_ws(self, epochs, lr, dataset, X_train, y_train, X_test, y_test, step_per_epoch=None, patience=-1, best_model=True, min_is_better=True, threshold=0.0001):
         comp_lmbd = (lambda a,b: a<b) if min_is_better else (lambda a,b: a>b)
