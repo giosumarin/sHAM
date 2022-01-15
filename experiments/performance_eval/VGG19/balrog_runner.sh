@@ -1,16 +1,16 @@
 for k in 32 64 128 256
 do
-	python compression.py --compression uCWS --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uCWS --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 for k in 32 64 128 256
 do
-	python compression.py --compression uPWS --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uPWS --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 for k in 32 64 128 256
 do
-	python compression.py --compression uUQ --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uUQ --net original_nets/VGG19-CIFAR10.h5 --dataset CIFAR10 --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 
@@ -19,17 +19,17 @@ done
 
 for k in 32 64 128 256
 do
-	python compression.py --compression uCWS --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uCWS --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 for k in 32 64 128 256
 do
-	python compression.py --compression uPWS --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uPWS --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 for k in 32 64 128 256
 do
-	python compression.py --compression uUQ --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
+	python compression_only_quant_conv.py --compression uUQ --net original_nets/VGG19-MNIST.h5 --dataset MNIST --clusterfc 0 --clustercnn $k --prfc 0
 done
 
 
