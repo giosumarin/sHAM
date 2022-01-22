@@ -293,3 +293,6 @@ def main(compression, net, dataset, directory, keep,sr,rr):
         score, compr_space, original_space = space_slrf(model, keep, sr, rr, x_test, y_test)
         print(score, compr_space, original_space)
 
+
+if __name__ == '__main__':
+    main()
