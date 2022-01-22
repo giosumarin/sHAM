@@ -95,7 +95,8 @@ def split_filename(fn):
     elif len(c) == 3:
         return c[0], c[1], c[2]
     elif len(c) == 5:
-        return c[0], c[2], c[4]
+        #return c[0], c[2], c[4]
+        return 0, c[3], c[4]
 
 def sparse_SVD_wr(weights,U,S,V,keep,sr,rr):
     tU, tS, tV = U[:, 0:keep], S[0:keep], V[0:keep, :]
@@ -267,6 +268,8 @@ def main(compression, net, dataset, directory, keep,sr,rr):
     if compression == "also_quant":
         perf = []
         compr_spaces = []
+        wss = []
+
         onlyfiles = [f for f in listdir(directory) if isfile(join(directory, f))]
         for weights in sorted(onlyfiles):
             gc.collect()
@@ -291,12 +294,13 @@ def main(compression, net, dataset, directory, keep,sr,rr):
 
                 perf += [score]
                 compr_spaces += [round((space_compr_cnn+compr_space)/(space_expanded_cnn+original_space), 5)]
-                
+                wss += [ws]
 
-                file_res = f"results//{directory.split('/')[-1]}.txt"
-                with open(file_res, "a+") as tex:
-                    tex.write(f"{keep} {sr} {rr}\n")
-                    tex.write(f"perf = {perf}\ncompr_space={compr_spaces}")
+
+        file_res = f"results//res.txt"
+        with open(file_res, "a+") as tex:
+            tex.write(f"{keep} {sr} {rr}\n")
+            tex.write(f"ws = {wss}\nperf = {perf}\ncompr_space={compr_spaces}")
 
     else:
         score, compr_space, original_space = space_slrf(model, keep, sr, rr, x_test, y_test)
