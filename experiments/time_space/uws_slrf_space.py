@@ -300,7 +300,8 @@ def main(compression, net, dataset, directory, keep,sr,rr):
 
         file_res = f"results//res.txt"
         with open(file_res, "a+") as tex:
-            tex.write(f"{keep} {sr} {rr}\n")
+            tex.write(f"\n\n{keep} {sr} {rr}\n")
+            tex.write(directory+"\n")
             tex.write(f"ws = {wss}\nperf = {perf}\ncompr_space={compr_spaces}")
 
     else:
