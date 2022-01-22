@@ -283,6 +283,7 @@ def main(compression, net, dataset, directory, keep,sr,rr):
                 all_vect_weights = np.concatenate(vect_weights, axis=None).reshape(-1,1)
                 uniques = np.unique(all_vect_weights)
                 num_values = len(uniques)
+                print(num_values)
                 space_compr_cnn = (num_values*32 + math.ceil(np.log2(num_values)) * sum([lw[i].size for i in cnnIdx])) / 8
                 pr, ws, acc = split_filename(weights)
                 ws_acc = float(acc[:-3])
