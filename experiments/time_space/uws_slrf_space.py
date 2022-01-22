@@ -132,7 +132,7 @@ def space_slrf(model, keep, sr, rr, x_test, y_test):
         lw[i] = np.matmul(np.matmul(tU, np.diag(tS)), tV)
         compr_space += (tU.size+tS.size+tV.size)*32/8
         original_space += dense_space(lw[i])
-
+    model.set_weights(lw)
     score = model.evaluate(x_test, y_test)
     if type(score) == list:
         score = score[-1]
