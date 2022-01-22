@@ -386,12 +386,12 @@ for weights in sorted(onlyfiles):
             model.set_weights(lw)
 
             cnnIdx, denseIdx = list_of_cnn_and_dense_weights_indexes(lw)
-            if type_compr == "also_cnn":
+            if type_compr == "also_cnn" or type_compr == "only_cnn":
                 space_expanded_cnn = sum([cnn_space(lw[i]) for i in cnnIdx])
             else:
                 space_expanded_cnn = 0
             # Estraggo quanti simboli sono usati effettivamente nei liv conv
-            if type_compr == "also_cnn":
+            if type_compr == "also_cnn" or type_compr == "only_cnn":
                 vect_weights =[np.hstack(lw[i]).reshape(-1,1) for i in cnnIdx]
                 all_vect_weights = np.concatenate(vect_weights, axis=None).reshape(-1,1)
                 uniques = np.unique(all_vect_weights)
@@ -434,6 +434,9 @@ for weights in sorted(onlyfiles):
             if type_compr in ["sham", "all", "also_cnn"]:
                 space_sh.append(round((space_compr_cnn + space_shuffman)/(space_expanded_cnn + space_dense), 5))
             nonzero_h.append(non_zero)
+            if type_compr in ["only_conv"]:
+                space_h.append(round((space_compr_cnn)/(space_expanded_cnn)))
+            
             
 
             if type_compr == "ham":
@@ -445,7 +448,10 @@ for weights in sorted(onlyfiles):
                 ####
             elif type_compr == "all":
                 print("{} {} acc1, spaceh {}, spacesh {}".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], space_sh[-1], ))
-
+            elif type_compr == "only_conv":
+                ### Commentato per salvare solo i tempi, non i rapporti
+                # print("{} {} acc1, space {}, time p {} time p cpp {} ".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], time_h_p[-1], time_h_p_cpp[-1]))
+                print("{} {} acc1, space {}".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1]))
 
 if type_compr == "ham":
     str_res = "results/huffman_upq.txt" if pq else "results/huffman_pruws.txt"
@@ -464,3 +470,9 @@ if type_compr == "all":
     with open(str_res, "a+") as tex:
         tex.write(directory)
         tex.write("\npruning = {} \nclusters = {}\ndiff_acc = {}\nperf = {}\nspaceh = {}\nspacesh = {}\n".format(pruning_l_h, ws_l_h, diff_acc_h, perf, space_h, space_sh))
+
+if type_compr == "only_conv":
+    str_res = "results/all_upq.txt" if pq else "results/all_pruws.txt"
+    with open(str_res, "a+") as tex:
+        tex.write(directory)
+        tex.write("\npruning = {} \nclusters = {}\ndiff_acc = {}\nperf = {}\nspaceh = {}\n".format(pruning_l_h, ws_l_h, diff_acc_h, perf, space_h))
