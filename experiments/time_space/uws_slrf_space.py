@@ -231,8 +231,8 @@ def main(compression, net, dataset, directory, keep,sr,rr):
         # data loading
         num_classes = 10
         (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-        y_train = tf.keras.utils.utils.to_categorical(y_train, num_classes)
-        y_test = tf.keras.utils.utils.to_categorical(y_test, num_classes)
+        y_train = tf.keras.utils.to_categorical(y_train, num_classes)
+        y_test = tf.keras.utils.to_categorical(y_test, num_classes)
         x_train = x_train.astype('float32')
         x_test = x_test.astype('float32')
 
