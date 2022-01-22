@@ -141,6 +141,8 @@ def space_slrf(model, keep, sr, rr, x_test, y_test):
 
 def main(compression, net, dataset, directory, keep,sr,rr):
     
+    print(compression, net, dataset, directory, keep,sr,rr)
+
     # Load model
     model = tf.keras.models.load_model(net)
     

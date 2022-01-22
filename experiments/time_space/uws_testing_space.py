@@ -408,12 +408,12 @@ for weights in sorted(onlyfiles):
 
             lodi = list_of_dense_indexes(model)
             lodwi = list_of_dense_weights_indexes(lw)
-            for l in lodwi:
-                print(lw[l])
-                #print(np.unique(lw[l]))
-                print(len(np.nonzero(lw[l])[0]))
-                print(lw[l].size)
-                print()
+            # for l in lodwi:
+            #     print(lw[l])
+            #     #print(np.unique(lw[l]))
+            #     print(len(np.nonzero(lw[l])[0]))
+            #     print(lw[l].size)
+            #     print()
             assert len(lodi) == len(lodwi)
 
             non_zero = []
