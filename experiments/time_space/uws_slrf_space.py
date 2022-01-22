@@ -138,6 +138,15 @@ def space_slrf(model, keep, sr, rr, x_test, y_test):
     
     return score, compr_space, original_space
 
+@click.command()
+@click.option('--compression', help='Type of compression')
+@click.option('--net', help='original network datapath')
+@click.option('--dataset', help='dataset')
+@click.option('--directory', default=".", help='datapath compressed model')
+@click.option('--keep', default=1, help='keep')
+@click.option('--sr', default=1.0, help='sr')
+@click.option('--rr', default=1.0, help='rr')
+
 
 def main(compression, net, dataset, directory, keep,sr,rr):
     
