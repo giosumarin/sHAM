@@ -2,42 +2,19 @@ import os
 from os import listdir
 from os.path import isfile, join
 import gc
-import sys
-from sys import getsizeof
-from math import floor
 import pickle
-import timeit
-import getopt
-from functools import reduce
-from itertools import repeat
-from multiprocessing import Pool
 import click
 
 
-from numba import njit
 import numpy as np
 import tensorflow as tf
 from datahelper_noflag import *
 from tensorflow.keras.datasets import mnist, cifar10, cifar100
 
-from sHAM import huffman
-from sHAM import sparse_huffman
-from sHAM import sparse_huffman_only_data
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 exec(open("../performance_eval/GPU.py").read())
-
-
-@click.command()
-@click.option('--compression', help='Type of compression')
-@click.option('--net', help='original network datapath')
-@click.option('--dataset', help='dataset')
-@click.option('--directory', default=".", help='datapath compressed model')
-@click.option('--keep', default=1, help='keep')
-@click.option('--sr', default=1.0, help='sr')
-@click.option('--rr', default=1.0, help='rr')
-
 
 
 def prepare_interaction_pairs(XD, XT,  Y, rows, cols):
