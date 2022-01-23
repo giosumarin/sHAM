@@ -28,6 +28,17 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
         self.level_idxs = self.list_layer_idx()
         self.timestamped_filename = str(time.time()) + "_check.h5"
 
+    def recompose_weight_pruPWS(self, instan, perc, centers, idx_layers):
+        self.temp_masks = self.masks.copy()
+        index_i = 0
+        for layer in self.model.layers:
+            if (isinstance(layer,instan) and perc > 0):
+                if len(layer.get_weights()) > 1:
+                    layer.set_weights([idx_matrix_to_matrix(idx_layers[index_i], centers)*self.temp_masks.pop(0), layer.get_weights()[1]])
+                else:
+                    layer.set_weights([idx_matrix_to_matrix(idx_layers[index_i], centers)*self.temp_masks.pop(0)])
+                index_i += 1
+
 
     def apply_pr_uCWS(self, mbkmeans=True):
         self.apply_pruning() #crea masks e setta pesi prunati nel modello
@@ -37,14 +48,16 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
         if self.perc_prun_for_cnn > 0:
             self.recompose_weight_first((Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn)
     
-    def update_centers_and_recompose(self, list_weights_before, lr, instan, perc, centers, idx_layers, masks):
+    def update_centers_and_recompose(self, list_weights_before, lr, instan, perc, centers, idx_layers, masks, pruPWS_train=False):
         list_weights = self.extract_weights(instan, perc)
         centers_upd = [(centroid_gradient_matrix_combined(idx_layers[i], list_weights[i]-list_weights_before[i], perc, masks[i])) for i in range(len(list_weights))]
         
         for c_u in centers_upd:
             centers = centers + lr * c_u
-
-        self.recompose_weight(instan, perc, centers, idx_layers)
+        if pruPWS_train:
+            self.recompose_weight_pruPWS(instan, perc, centers, idx_layers)
+        else:
+            self.recompose_weight(instan, perc, centers, idx_layers)
 
     def recompose_weight_first(self, instan, perc, centers, idx_layers):
         index_i = 0
@@ -58,7 +71,7 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
                 index_i += 1
 
 
-    def train_ws(self, epochs, lr, dataset, X_train, y_train, X_test, y_test, step_per_epoch=None, patience=-1, best_model=True, min_is_better=True, threshold=0.0001):
+    def train_ws(self, epochs, lr, dataset, X_train, y_train, X_test, y_test, step_per_epoch=None, patience=-1, best_model=True, min_is_better=True, threshold=0.0001, pruPWS_train=False):
         comp_lmbd = (lambda a,b: a<b) if min_is_better else (lambda a,b: a>b)
         with tf.device('gpu:0'):
             self.patience = patience
@@ -73,10 +86,13 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
                     list_weights_before_fc = self.extract_weights(Dense, self.clusters_fc)
                     self.train_step_pr(images, labels)  # TODO: qui si potrebbe fare una cosa per evitare di copiare tutta la f di training
                     if self.clusters_cnn > 0:
-                        self.update_centers_and_recompose(list_weights_before_cnn, lr, (Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn, self.masks_cnn)
+                        self.update_centers_and_recompose(list_weights_before_cnn, lr, (Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn, self.masks_cnn, pruPWS_train)
                     if self.clusters_fc > 0:
-                        self.update_centers_and_recompose(list_weights_before_fc, lr, Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc, self.masks_fc)
-
+                        self.update_centers_and_recompose(list_weights_before_fc, lr, Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc, self.masks_fc, pruPWS_train)
+                    lll = self.model.get_weights()
+                    if len(lll)>60:
+                        print(lll[96])
+                        break
                     if step_per_epoch:
                         if batch == step_per_epoch:
                             break
