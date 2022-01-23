@@ -100,23 +100,23 @@
 
 
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 8 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 8 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 16 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 16 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 32 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 32 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 64 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uCWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 8 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 8 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 16 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 16 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 32 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 32 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis--directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 64 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/DeepDTA/original_nets/deepDTA_davis.h5 --dataset davis --directory /mnt/sHAM/experiments/performance_eval/DeepDTA/deepDTA_davis/uPWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
