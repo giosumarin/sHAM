@@ -159,19 +159,19 @@ def main(compression, net, dataset, directory, keep,sr,rr):
     if dataset == "kiba":
         # data loading
         dataset_path = '../performance_eval/DeepDTA/data_utils/kiba/'
-        dataset = DataSet( fpath = dataset_path, ### BUNU ARGS DA GUNCELLE
+        dataset1 = DataSet( fpath = dataset_path, ### BUNU ARGS DA GUNCELLE
                                 setting_no = 1, ##BUNU ARGS A EKLE
                                 seqlen = 1000,
                                 smilen = 100,
                                 need_shuffle = False )
 
-        XD, XT, Y = dataset.parse_data(dataset_path, 0)
+        XD, XT, Y = dataset1.parse_data(dataset_path, 0)
 
         XD = np.asarray(XD)
         XT = np.asarray(XT)
         Y = np.asarray(Y)
 
-        test_set, outer_train_sets = dataset.read_sets(dataset_path, 1)
+        test_set, outer_train_sets = dataset1.read_sets(dataset_path, 1)
 
         flat_list = [item for sublist in outer_train_sets for item in sublist]
 
@@ -190,19 +190,19 @@ def main(compression, net, dataset, directory, keep,sr,rr):
     elif dataset == "davis":
         # data loading
         dataset_path = '../performance_eval/DeepDTA/data_utils/davis/'
-        dataset = DataSet( fpath = dataset_path, ### BUNU ARGS DA GUNCELLE
+        dataset1 = DataSet( fpath = dataset_path, ### BUNU ARGS DA GUNCELLE
                                 setting_no = 1, ##BUNU ARGS A EKLE
                                 seqlen = 1200,
                                 smilen = 85,
                                 need_shuffle = False )
 
-        XD, XT, Y = dataset.parse_data(dataset_path, 1)
+        XD, XT, Y = dataset1.parse_data(dataset_path, 1)
 
         XD = np.asarray(XD)
         XT = np.asarray(XT)
         Y = np.asarray(Y)
 
-        test_set, outer_train_sets = dataset.read_sets(dataset_path, 1)
+        test_set, outer_train_sets = dataset1.read_sets(dataset_path, 1)
 
         flat_list = [item for sublist in outer_train_sets for item in sublist]
 
