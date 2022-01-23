@@ -199,8 +199,8 @@ def make_huffman_sparse_par(model, lodi, lodwi, lw):
         print(space_sparse_huffman)
         space_sparse_huffman += space_for_row_cum(lw[l], cum) + space_for_row_cum(lw[l], row_index)
         print(space_sparse_huffman)
-        print("prova: ", (len(np.unique(lw[l]))+len(lw[l].shape[1])))
-        print(len(cum)+len(row_index))
+        #print("prova: ", (len(np.unique(lw[l]))+len(lw[l].shape[1])))
+        #print(len(cum)+len(row_index))
     return space_dense, space_sparse_huffman    
 
 
