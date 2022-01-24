@@ -168,7 +168,12 @@
 
 
 
-#DAFARE
-# python uws_testing_space.py -t all -d /mnt/sHAM/experiments/performance_eval/VGG19/vgg19cifar100/pruPWS/ -m /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/vgg19cifar100.h5 -s cifar100 -q 0
+
+python uws_testing_space.py -t all -d /mnt/sHAM/experiments/performance_eval/VGG19/vgg19cifar100/pruPWS/ -m /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/vgg19cifar100.h5 -s cifar100 -q 0
 
 python uws_testing_space.py -t all -d /mnt/sHAM/experiments/performance_eval/VGG19/vgg19cifar100/pruUQ/ -m /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/vgg19cifar100.h5 -s cifar100 -q 0
+
+python uws_testing_space.py -t all -d /mnt/sHAM/experiments/performance_eval/VGG19/vgg19cifar100-old/pruCWS/ -m /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/vgg19cifar100.h5 -s cifar100 -q 0
+
+
+
