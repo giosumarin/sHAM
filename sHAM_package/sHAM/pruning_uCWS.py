@@ -92,7 +92,6 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
                     lll = self.model.get_weights()
                     if len(lll)>60:
                         print(lll[96])
-                        break
                     if step_per_epoch:
                         if batch == step_per_epoch:
                             break
