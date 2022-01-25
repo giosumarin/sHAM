@@ -37,8 +37,15 @@
 
 
 
+for p in 30 40 50 60 70 80 90 95 96 97 98 99
+do
+	for k in 2 16 32 64 128
+	do
+		python compression.py --compression pruPWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --prfc $p
+	done
+done
 
-for p in 90 92 95 97 99
+for p in 90 92 95 96 97 99
 do
 	for k in 32 64 128 256
 	do
@@ -46,7 +53,7 @@ do
 	done
 done 
 
-for p in 60 70 80 92 # 9095 97 99
+for p in 90 92 95 96 97 99
 do
 	for k in 32 64 128 256
 	do
@@ -54,21 +61,10 @@ do
 	done
 done 
 
-for p in 60 70 80 90 92 #95 97 99
+for p in 90 92 95 96 97 99
 do
 	for k in 32 64 128 256
 	do
 		python compression.py --compression pruUQ --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn $k --prfc $p
-	done
-done 
-
-
-
-
-for p in 60 70 80 90 92 #95 97 99
-do
-	for k in 32 64 128 256
-	do
-		python compression.py --compression pruECSQ --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn $k --prfc $p
 	done
 done 
