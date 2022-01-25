@@ -46,7 +46,7 @@ do
 	done
 done 
 
-for p in 90 92 95 97 99
+for p in 60 70 80 92 # 9095 97 99
 do
 	for k in 32 64 128 256
 	do
@@ -54,7 +54,7 @@ do
 	done
 done 
 
-for p in 90 92 95 97 99
+for p in 60 70 80 90 92 #95 97 99
 do
 	for k in 32 64 128 256
 	do
@@ -65,7 +65,7 @@ done
 
 
 
-for p in 90 92 95 97 99
+for p in 60 70 80 90 92 #95 97 99
 do
 	for k in 32 64 128 256
 	do
