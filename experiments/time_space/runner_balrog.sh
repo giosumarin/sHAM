@@ -29,66 +29,66 @@
 
 
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 8 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 8 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 16 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 16 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 32 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 32 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 64 --sr 0.5 --rr 0.5
-
-
-
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 8 --sr 0.5 --rr 0.5
-
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 16 --sr 0.5 --rr 0.5
-
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 32 --sr 0.5 --rr 0.5
-
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 64 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uCWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 8 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 8 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 16 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 16 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 32 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 32 --sr 0.5 --rr 0.5
 
-python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 64 --sr 0.5 --rr 0.5
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uPWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
+
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 8 --sr 0.5 --rr 0.5
+
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 16 --sr 0.5 --rr 0.5
+
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 32 --sr 0.5 --rr 0.5
+
+# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-CIFAR10.h5 --dataset cifar10 --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-CIFAR10/uUQ/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 8 --sr 0.5 --rr 0.5
-
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 16 --sr 0.5 --rr 0.5
-
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 32 --sr 0.5 --rr 0.5
-
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 8 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 8 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 16 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 16 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 32 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 32 --sr 0.5 --rr 0.5
-
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 64 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uCWS/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 8 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 8 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 16 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 16 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 32 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 32 --sr 0.5 --rr 0.5
 
-# python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 64 --sr 0.5 --rr 0.5
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uPWS/ --keep 64 --sr 0.5 --rr 0.5
+
+
+
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 8 --sr 0.5 --rr 0.5
+
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 16 --sr 0.5 --rr 0.5
+
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 32 --sr 0.5 --rr 0.5
+
+python uws_slrf_space.py --compression also_quant --net /mnt/sHAM/experiments/performance_eval/VGG19/original_nets/VGG19-MNIST.h5 --dataset mnist --directory /mnt/sHAM/experiments/performance_eval/VGG19/VGG19-MNIST/uUQ/ --keep 64 --sr 0.5 --rr 0.5
 
 
 
