@@ -44,7 +44,7 @@ def ECSQ(weights_to_quantize, k, wanted_clusters, lambd=0.5, tr=0.001):
     while also_run:
         counter+=1
         print(counter)
-        if counter >= 20:
+        if counter >= 30:
             print("breaked")
             also_run = False
         with errstate(divide='ignore'):
