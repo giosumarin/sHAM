@@ -86,7 +86,8 @@ class pruning_uCWS(pruning.pruning, uCWS.uCWS):
                     list_weights_before_fc = self.extract_weights(Dense, self.clusters_fc)
                     self.train_step_pr(images, labels)  # TODO: qui si potrebbe fare una cosa per evitare di copiare tutta la f di training
                     if self.clusters_cnn > 0:
-                        self.update_centers_and_recompose(list_weights_before_cnn, lr, (Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn, self.masks_cnn, pruPWS_train)
+                        also_pr_cnn = pruPWS_train and self.perc_prun_for_cnn > 0
+                        self.update_centers_and_recompose(list_weights_before_cnn, lr, (Conv1D, Conv2D, Conv3D), self.clusters_cnn, self.centers_cnn, self.idx_layers_cnn, self.masks_cnn, pruPWS_train=also_pr_cnn)
                     if self.clusters_fc > 0:
                         self.update_centers_and_recompose(list_weights_before_fc, lr, Dense, self.clusters_fc, self.centers_fc, self.idx_layers_fc, self.masks_fc, pruPWS_train)
                     #lll = self.model.get_weights()
