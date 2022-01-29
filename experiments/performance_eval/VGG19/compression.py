@@ -115,7 +115,7 @@ def main(compression, net, dataset, learning_rate, lr_cumulative, minibatch, prf
     if compression == "pr":
         compression_model.train_pr(epochs=100, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, step_per_epoch = 10000000, patience=0)
     else:
-        compression_model.train_ws(epochs=20, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=tr, step_per_epoch=step_per_epoch, pruPWS_train=True if compression == "pruPWS" else False)
+        compression_model.train_ws(epochs=30, lr=lr_cumulative, dataset=dataset, X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test, patience=ptnc, min_is_better=False, threshold=tr, step_per_epoch=step_per_epoch, pruPWS_train=True if compression == "pruPWS" else False)
 
     # Model save
     name_net = (net.split("/")[-1])[:-3]
