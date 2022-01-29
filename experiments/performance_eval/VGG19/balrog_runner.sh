@@ -53,15 +53,15 @@
 # 	done
 # done 
 
-for p in 90 92 95 96 97 99
+for p in 90 92 95 97 99
 do
 	for k in 32 64 128 256
 	do
-		python compression.py --compression pruPWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn $k --prfc $p
+		python compression.py --compression pruPWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn $k --prfc $p --lr_cumulative 0.0001
 	done
 done 
 
-for p in 90 92 95 96 97 99
+for p in 90 92 95 97 99
 do
 	for k in 32 64 128 256
 	do
