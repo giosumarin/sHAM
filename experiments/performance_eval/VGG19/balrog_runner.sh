@@ -71,17 +71,23 @@
 
 
 
-for k in 2 16 32 64 128 256
-do
-	python compression.py --compression uCWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn 0 --prfc 0
-done
+# for k in 2 16 32 64 128 256
+# do
+# 	python compression.py --compression uCWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn 0 --prfc 0
+# done
 
-for k in 2 16 32 64 128 256
-do
-	python compression.py --compression uUQ --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn 0 --prfc 0
-done
+# for k in 2 16 32 64 128 256
+# do
+# 	python compression.py --compression uUQ --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn 0 --prfc 0
+# done
 
 for k in 10 20 30 40 50 60 70 80 90 95 96 97 98 99
 do
 	python compression.py --compression pr --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --prcnn $k
+done
+
+
+for k in 2 16 32 64 128 256
+do
+	python compression.py --compression uPWS --net original_nets/vgg19cifar100.h5 --dataset CIFAR100 --clusterfc $k --clustercnn 0 --prfc 0
 done
