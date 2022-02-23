@@ -422,7 +422,7 @@ for weights in sorted(onlyfiles):
                 space_dense, space_huffman = make_huffman(model, lodi, lodwi, lw)
             elif type_compr == "sham":
                 space_dense, space_shuffman = make_huffman_sparse_par(model, lodi, lodwi, lw)
-            elif type_compr == ["all", "also_cnn"]:
+            elif type_compr in ["all", "also_cnn"]:
                  space_dense, space_huffman = make_huffman(model, lodi, lodwi, lw)
                  space_dense, space_shuffman = make_huffman_sparse_par(model, lodi, lodwi, lw)
             
