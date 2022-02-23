@@ -397,7 +397,7 @@ for weights in sorted(onlyfiles):
                 uniques = np.unique(all_vect_weights)
                 num_values = len(uniques)
                 space_compr_cnn = (num_values*32 + math.ceil(np.log2(num_values)) * sum([lw[i].size for i in cnnIdx])) / 8
-                type_compr = "all"
+                #type_compr = "all"
             else:
                 space_compr_cnn = space_expanded_cnn
 
@@ -446,7 +446,7 @@ for weights in sorted(onlyfiles):
                 # print("{} {} acc1, space {}, time p {} time p cpp {} ".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], time_h_p[-1], time_h_p_cpp[-1]))
                 print("{} {} acc1, space {}".format(ws_l_h[-1], diff_acc_h[-1], space_sh[-1]))
                 ####
-            elif type_compr == "all":
+            elif type_compr == ["all", "also_cnn"] :
                 print("{} {} acc1, spaceh {}, spacesh {}".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], space_sh[-1], ))
             elif type_compr == "only_conv":
                 ### Commentato per salvare solo i tempi, non i rapporti
