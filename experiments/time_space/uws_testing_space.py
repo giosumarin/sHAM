@@ -422,7 +422,7 @@ for weights in sorted(onlyfiles):
                 space_dense, space_huffman = make_huffman(model, lodi, lodwi, lw)
             elif type_compr == "sham":
                 space_dense, space_shuffman = make_huffman_sparse_par(model, lodi, lodwi, lw)
-            elif type_compr == "all":
+            elif type_compr == ["all", "also_cnn"]:
                  space_dense, space_huffman = make_huffman(model, lodi, lodwi, lw)
                  space_dense, space_shuffman = make_huffman_sparse_par(model, lodi, lodwi, lw)
             
@@ -446,7 +446,7 @@ for weights in sorted(onlyfiles):
                 # print("{} {} acc1, space {}, time p {} time p cpp {} ".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], time_h_p[-1], time_h_p_cpp[-1]))
                 print("{} {} acc1, space {}".format(ws_l_h[-1], diff_acc_h[-1], space_sh[-1]))
                 ####
-            elif type_compr == ["all", "also_cnn"] :
+            elif type_compr in ["all", "also_cnn"] :
                 print("{} {} acc1, spaceh {}, spacesh {}".format(ws_l_h[-1], diff_acc_h[-1], space_h[-1], space_sh[-1], ))
             elif type_compr == "only_conv":
                 ### Commentato per salvare solo i tempi, non i rapporti
@@ -465,7 +465,7 @@ elif type_compr == "sham":
         tex.write(directory)
         tex.write("\npruning = {} \nclusters = {}\ndiff_acc = {}\nperf = {}\nspace = {}\n".format(pruning_l_h, ws_l_h, diff_acc_h, perf, space_h))
 
-if type_compr == "all":
+if type_compr in ["all", "also_cnn"]:
     str_res = "results/all_upq.txt" if pq else "results/all_pruws.txt"
     with open(str_res, "a+") as tex:
         tex.write(directory)
